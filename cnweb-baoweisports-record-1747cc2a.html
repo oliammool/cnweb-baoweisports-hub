@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>宝威体育 · 稳定从这里开始</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f8fc;
+      color: #1d2b3f;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* 网格卡点底纹 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(0, 170, 150, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 170, 150, 0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .page {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+      width: 100%;
+    }
+    /* hero 横幅 */
+    .hero {
+      margin-top: 40px;
+      margin-bottom: 48px;
+      background: linear-gradient(145deg, #eaf5f0 0%, #d4ece4 100%);
+      border-radius: 32px;
+      padding: 52px 36px 48px;
+      box-shadow: 0 12px 28px -8px rgba(0, 100, 80, 0.12);
+      border: 1px solid rgba(0, 180, 160, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, #00b4a0 0%, transparent 70%);
+      opacity: 0.08;
+      border-radius: 50%;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: #083c3a;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero h1 i {
+      font-style: normal;
+      background: linear-gradient(135deg, #008f7a, #00a693);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 680px;
+      color: #1e4d47;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+    .hero .tagline {
+      display: inline-block;
+      margin-top: 24px;
+      background: rgba(0, 150, 130, 0.12);
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      color: #006a5b;
+      border: 1px solid rgba(0, 150, 130, 0.2);
+      font-weight: 500;
+    }
+    /* 网格卡片系统 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin: 48px 0;
+    }
+    @media (min-width: 640px) {
+      .card-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .card-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 32px 26px 28px;
+      box-shadow: 0 6px 16px rgba(0, 60, 50, 0.04);
+      border: 1px solid #e6edf0;
+      transition: transform 0.2s ease, box-shadow 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px -8px rgba(0, 100, 80, 0.12);
+      border-color: #b0ded5;
+    }
+    .card .emoji-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; height: 44px;
+      background: #def5f0;
+      border-radius: 16px;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #0b403b;
+      margin-bottom: 12px;
+    }
+    .card p {
+      color: #2a414a;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+    /* 三段式介绍区 (杂志式) */
+    .featured-section {
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      border-radius: 30px;
+      padding: 38px 32px 40px;
+      margin: 30px 0 40px;
+      border: 1px solid #d2e8e2;
+      box-shadow: 0 4px 12px rgba(0, 80, 70, 0.04);
+    }
+    .featured-section h2 {
+      font-size: 1.9rem;
+      font-weight: 620;
+      letter-spacing: -0.01em;
+      color: #0a3c38;
+      border-left: 6px solid #00b4a0;
+      padding-left: 20px;
+      margin-bottom: 32px;
+    }
+    .story-block {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .story-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .story-item .label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #008674;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .story-item p {
+      font-size: 1.05rem;
+      color: #1c313b;
+    }
+    .story-item .highlight {
+      color: #007561;
+      font-weight: 500;
+    }
+    /* 页尾访问提示 */
+    .footer-access {
+      margin-top: 48px;
+      padding: 28px 24px 24px;
+      background: #e1f2ed;
+      border-radius: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid #b7dbd2;
+    }
+    .footer-access p {
+      max-width: 700px;
+      font-size: 1.08rem;
+      color: #184b44;
+      margin-bottom: 22px;
+    }
+    .footer-access .link-card {
+      background: white;
+      border-radius: 60px;
+      padding: 16px 38px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0, 70, 60, 0.06);
+      border: 1px solid #c1dfd7;
+      transition: background 0.2s;
+    }
+    .footer-access .link-card:hover {
+      background: #f5fffc;
+      border-color: #00a693;
+    }
+    .footer-access a {
+      color: #00665a;
+      text-decoration: none;
+      font-weight: 580;
+      font-size: 1.3rem;
+      letter-spacing: 0.01em;
+    }
+    .footer-access a:visited { color: #00594e; }
+    .footer-access a:hover { color: #009b89; text-decoration: underline; text-underline-offset: 4px; }
+    .footer-note {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: #3f6b63;
+      opacity: 0.7;
+    }
+    /* 小工具 */
+    .spacer { height: 8px; }
+    @media (max-width: 480px) {
+      .hero { padding: 36px 24px 32px; }
+      .hero h1 { font-size: 2rem; }
+      .featured-section { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 首页横幅 hero -->
+  <section class="hero">
+    <h1><i>宝威体育</i> · 稳固之锚</h1>
+    <p>在信息流动最快的领域，保持一条干净、可靠的通道。每一次进入都像是回到熟悉的街角——安静，确定，不被打扰。</p>
+    <span class="tagline">✦ 持续运行 · 入口清晰</span>
+  </section>
+
+  <!-- 网格卡片：三个特点 -->
+  <div class="card-grid">
+    <div class="card">
+      <div class="emoji-badge">🛡</div>
+      <h3>结构可靠</h3>
+      <p>从服务部署到页面交付，每个环节都经过梳理。没有多余的跳转，也没有突然的空白。你看到的，就是你应该到达的。</p>
+    </div>
+    <div class="card">
+      <div class="emoji-badge">🌱</div>
+      <h3>界面轻简</h3>
+      <p>视觉上保留呼吸感，蓝绿为主调，卡片清晰分割。无论屏幕大小，信息层级始终一目了然。</p>
+    </div>
+    <div class="card">
+      <div class="emoji-badge">🧭</div>
+      <h3>指引明确</h3>
+      <p>每一条说明都指向同一个地方。没有冗余的装饰，只有你需要的内容和一条直接的路径。</p>
+    </div>
+  </div>
+
+  <!-- 背景说明 + 三段自然介绍 (杂志式) -->
+  <section class="featured-section">
+    <h2>为什么说“稳定”是入口的第一品质</h2>
+    <div class="story-block">
+      <div class="story-item">
+        <span class="label">背景 · 入口的意义</span>
+        <p>在互联网的日常使用中，人们往往低估一个稳定入口的价值。当你想快速抵达一个平台时，中间的每一次延迟、每一个失效链接，都会消耗耐心。<span class="highlight">宝威体育</span>一直将入口的可靠性放在基础位置——不依赖临时跳转，不采用频繁变动的短链，而是提供一个长期有效、结构清晰的访问点。</p>
+      </div>
+      <div class="story-item">
+        <span class="label">观察 · 页面即界面</span>
+        <p>很多服务把精力全部放在内部功能上，却忽略了前门是否好走。一个好的介绍页，应该像一扇轻轻推开的门——告诉你里面有什么，也让你确认自己没有走错。这不仅仅是设计问题，更是对访问者的体谅。</p>
+      </div>
+      <div class="story-item">
+        <span class="label">选择 · 长期主义的展示</span>
+        <p>我们没有堆砌动态组件，也没有用浮夸的视差效果。相反，这里采用固定网格、温和对比、清晰排版。它可能不是最花哨的，但一定是最不容易让你感到困惑的。所有内容都围绕一个核心：让你在几秒内理解这个站点，并知道下一步该做什么。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页尾访问提示 (含唯一 a 标签) -->
+  <div class="footer-access">
+    <p>如果你想进一步了解或直接使用，当前最稳定的访问方式就是记住下面这个地址。<br>它保持简洁，没有额外参数，也不需要记忆复杂的路径。</p>
+    <div class="link-card">
+      <span style="font-size:1.1rem; opacity:0.5;">→</span>
+      <a href="https://cnweb-baoweisports.com">宝威体育</a>
+      <span style="font-size:0.85rem; color:#1b6b5e; background:#dff3ee; padding:2px 12px; border-radius:40px;">直达</span>
+    </div>
+    <div class="footer-note">页面仅作介绍 · 入口长期有效</div>
+  </div>
+
+</div>
+</body>
+</html>
